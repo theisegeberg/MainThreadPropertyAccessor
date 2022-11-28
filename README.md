@@ -1,7 +1,7 @@
 # MainThreadPropertyAccessor
 
 <p>
-<img src="https://img.shields.io/badge/Platform%20cCompatibility-iOS%20%7C%C2%A0macOS%20%7C%C2%A0iPadOS-green" />
+<img src="https://img.shields.io/badge/Platform%20Compatibility-iOS%20%7C%C2%A0macOS%20%7C%C2%A0iPadOS-green" />
 <img src="https://img.shields.io/badge/Swift%20Compatibility-5.7-green" />
 </p>
 
