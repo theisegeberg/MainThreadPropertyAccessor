@@ -38,4 +38,16 @@ final class MainThreadPropertyAccessorTests: XCTestCase {
 
         XCTAssert(anObject.setOnMain.aWritableProperty == "An initial value")
     }
+    
+    /// Tests that getting a value acts as expected.
+    func testNilSetting() {
+        class ATestObject: MainThreadPropertyAccessor {
+            var aWritableProperty: String = "An initial value"
+            
+            init() {}
+        }
+        let anObject = ATestObject()
+        anObject.setOnMain.aWritableProperty = nil
+        XCTAssert(anObject.setOnMain.aWritableProperty == "An initial value")
+    }
 }
