@@ -1,7 +1,6 @@
 import Foundation
 
-/// Accesses a value of an object `Root` (inspired by `KeyPath` generic naming), through a subscript on
-/// a specific queue. It's intended for setting, and not getting values.
+/// Accesses a value of an root object `Root`, through a subscript on a specific queue.
 ///
 /// The problem that this object addresses is the need for an `ObservableObject` to run a `Task`
 /// closure but very often set properties on the `ObservableObject` itself on the main dispatch queue
@@ -25,6 +24,8 @@ public struct DispatchQueueAccessor<Root: AnyObject> {
         self.queue = queue
     }
     
+    /// This subscript provides access to the `Root` objects properties. Setting is like normal setting of
+    /// the property. But getting will happen on the chosen dispatch queue.
     public subscript<Value>(
         dynamicMember keyPath: ReferenceWritableKeyPath<Root, Value>
     ) -> Value? {
