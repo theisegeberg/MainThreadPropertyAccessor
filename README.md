@@ -9,7 +9,9 @@
 Syntactic sugar for setting properties on an ObservableObject on the main thread from within a Task.
 
 ```swift
-self.setOnMain.status = "Now I'll never get purple warnings again!"
+Task {
+    self.setOnMain.status = "Now I'll never get purple warnings again!"
+}
 ```
 
 ## Installation
