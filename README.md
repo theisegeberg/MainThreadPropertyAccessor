@@ -8,6 +8,10 @@
 
 Syntactic sugar for setting properties on an ObservableObject on the main thread from within a Task.
 
+```swift
+self.setOnMain.status = "Now I'll never get purple warnings again!"
+```
+
 ## Installation
 
 You can use the [Swift Package Manager](https://github.com/apple/swift-package-manager) by declaring MainThreadPropertyAccessor as a dependency in your `Package.swift` file:
