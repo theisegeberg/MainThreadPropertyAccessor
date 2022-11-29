@@ -1,10 +1,9 @@
 # MainThreadPropertyAccessor
 
 <p>
-<img src="https://img.shields.io/badge/Platform%20Compatibility-iOS%20%7C%C2%A0macOS%20%7C%C2%A0iPadOS-green" />
-<img src="https://img.shields.io/badge/Swift%20Compatibility-5.7-green" />
+<img src="https://img.shields.io/badge/Platform%20Compatibility-iOS%20%7C%C2%A0macOS%20%7C%C2%A0iPadOS-4E4E4E.svg?colorA=28a745" />
+<img src="https://img.shields.io/badge/Swift%20Compatibility-5.7-4E4E4E.svg?colorA=28a745" />
 </p>
-
 
 Syntactic sugar for setting properties on an ObservableObject on the main thread from within a Task.
 
