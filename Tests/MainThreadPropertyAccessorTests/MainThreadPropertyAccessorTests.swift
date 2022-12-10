@@ -26,28 +26,23 @@ final class MainThreadPropertyAccessorTests: XCTestCase {
         }
         wait(for: [expectation], timeout: 1)
     }
-
-    /// Tests that getting a value acts as expected.
-    func testGettingValue() {
-        class ATestObject: MainThreadPropertyAccessor {
-            var aWritableProperty: String = "An initial value"
-
-            init() {}
-        }
-        let anObject = ATestObject()
-
-        XCTAssert(anObject.setOnMain.aWritableProperty == "An initial value")
-    }
     
     /// Tests that getting a value acts as expected.
     func testNilSetting() {
         class ATestObject: MainThreadPropertyAccessor {
-            var aWritableProperty: String = "An initial value"
+            var aWritableProperty: String? = "An initial value"
             
             init() {}
         }
         let anObject = ATestObject()
         anObject.setOnMain.aWritableProperty = nil
-        XCTAssert(anObject.setOnMain.aWritableProperty == "An initial value")
+
+        let expectation = XCTestExpectation()
+        DispatchQueue.main.async {
+            XCTAssert(anObject.aWritableProperty == nil)
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 1)
+
     }
 }

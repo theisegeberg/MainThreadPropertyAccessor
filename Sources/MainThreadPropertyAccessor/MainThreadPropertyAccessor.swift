@@ -1,7 +1,7 @@
 import Foundation
 
-/// Addopting this protocol will give access to `self.setOnMain` which is of type
-/// DispatchQueueAccessor<Self>. This provides easy syntatic sugar for setting the value of a property on
+/// Adopting this protocol will give access to `self.setOnMain` which is of type
+/// DispatchQueueAccessor<Self>. This provides easy syntactic sugar for setting the value of a property on
 /// the main dispatch queue. This is quite useful for when you run a `Task` in an `ObservableObject`
 ///  and whish to set a `@Published` property to update a SwiftUI `View`.
 public protocol MainThreadPropertyAccessor: AnyObject {}
@@ -29,9 +29,8 @@ public extension MainThreadPropertyAccessor {
     /// }
     /// ```
     ///
-    /// - Important: While you can get values through this property as well, there's no point. First of all
-    /// they'll always be optional, and secondly it'll give some performance overhead. If you need to get the
-    /// value of a property simply get it directly.
+    /// - Important: You can only use this property for setting values. Trying to get the value of a
+    /// property will cause a fatal error.
     ///
     /// - Warning: Because it sets the value on the main dispatch queue asynchronously, the value will
     /// not be immediately set. So assume the value isn't immediately.

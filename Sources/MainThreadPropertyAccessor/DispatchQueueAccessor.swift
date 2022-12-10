@@ -6,8 +6,7 @@ import Foundation
 /// closure but very often set properties on the `ObservableObject` itself on the main dispatch queue
 /// where all UI updates are required to occur in `SwiftUI`.
 ///
-/// - Important: Reading the value will produce an optional because the root object is weakly retained.
-/// If you want to read it just read it directly from the `Root` object.
+/// - Important: Trying to get the value of the property will cause a fatal error, and is not supported.
 @dynamicMemberLookup
 public struct DispatchQueueAccessor<Root: AnyObject> {
     private weak var root: Root?
@@ -24,18 +23,16 @@ public struct DispatchQueueAccessor<Root: AnyObject> {
         self.queue = queue
     }
     
-    /// This subscript provides access to the `Root` objects properties. Setting is like normal setting of
-    /// the property. But getting will happen on the chosen dispatch queue.
+    /// This subscript provides access to the `Root` objects properties. Setting this value will set it to the
+    /// new value on the given queue. Getting values through this subscript will cause a fatal error and is
+    /// not supported.
     public subscript<Value>(
         dynamicMember keyPath: ReferenceWritableKeyPath<Root, Value>
-    ) -> Value? {
+    ) -> Value {
         get {
-            root?[keyPath: keyPath]
+            fatalError("You're not supposed to use `.setOnMain`to get values, instead just use to the regular property on the object.")
         }
         set {
-            guard let newValue else {
-                return
-            }
             queue.async {
                 [weak root] in
                 root?[keyPath: keyPath] = newValue
